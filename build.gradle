@@ -1,0 +1,27 @@
+repositories {
+    maven { url "https://jitpack.io" }
+}
+
+task getUpdateChecker(type: Exec) {
+	def updateChecker = "${buildDir}/plugin-update-checker";
+	def str = "mkdir -p '" + file(updateChecker).absolutePath + "' && wget -qO- 'https://github.com/YahnisElsts/plugin-update-checker/archive/v4.4.tar.gz' | tar xvz --strip 1 -C '" + file(updateChecker).absolutePath + "'";
+	commandLine 'bash', '-c', str
+	outputs.dir updateChecker
+}
+
+task dist(type: Zip, dependsOn: 'getUpdateChecker') {
+	archiveName = 'video-embed-privacy.zip'
+
+	from(file('.')) {
+		include 'readme.txt'
+		include 'video-embed-privacy.css'
+		include 'video-embed-privacy.js'
+		include '*.php'
+		include 'languages/*'
+		include 'preview/.htaccess'
+		include 'preview/preview.php'
+	}
+	from(file("${buildDir}/plugin-update-checker")) {
+		into('plugin-update-checker')
+	}
+}

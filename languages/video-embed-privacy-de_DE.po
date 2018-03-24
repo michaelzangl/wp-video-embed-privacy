@@ -1,0 +1,119 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Embed videos and respect privacy v2.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2018-03-24 13:33:52+0000\n"
+"Last-Translator: Michael Zangl <wordpress@michaelzangl.de>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: CSL v1.x\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
+
+#: options.php:14
+#@ video-embed-privacy
+msgid "General"
+msgstr "Allgemein"
+
+#: options.php:16
+#@ video-embed-privacy
+msgid "Play button text"
+msgstr "Text für den Abspielen-Knopf"
+
+#: options.php:18
+#@ video-embed-privacy
+msgid "HMTL below youtube play link"
+msgstr "HTML unter dem Youtube Abspielen-Knopf"
+
+#: options.php:54
+#@ video-embed-privacy
+msgid "You can enter your custom texts here. Leave empty to use defaults."
+msgstr "Leer lassen um Standardtexte zu verwenden."
+
+#: options.php:60
+#: options.php:75
+#@ video-embed-privacy
+msgid "Video Embed Privacy settings"
+msgstr "Video-Privatsphären Einstellungen"
+
+#. translators: plugin header field 'Name'
+#: video-embed-privacy.php:0
+#@ video-embed-privacy
+msgid "Embed videos and respect privacy"
+msgstr "Video-Privatsphäre"
+
+#. translators: plugin header field 'PluginURI'
+#: video-embed-privacy.php:0
+#@ video-embed-privacy
+msgid "https://wordpress.org/plugins/video-embed-privacy/"
+msgstr "https://wordpress.org/plugins/video-embed-privacy/"
+
+#. translators: plugin header field 'Description'
+#: video-embed-privacy.php:0
+#@ video-embed-privacy
+msgid "Allows you to embed youtube videos without sending data to google on every page view."
+msgstr "Erlaubt es die Youtube-Videos ein zu binden ohne Daten an Google/Youtube beim Seitenaufruf zu senden."
+
+#. translators: plugin header field 'Author'
+#: video-embed-privacy.php:0
+#@ video-embed-privacy
+msgid "Michael Zangl"
+msgstr "Michael Zangl"
+
+#. translators: plugin header field 'Version'
+#: video-embed-privacy.php:0
+#@ video-embed-privacy
+msgid "2.0"
+msgstr "2.0"
+
+#: video-embed-privacy.php:34
+#@ video-embed-privacy
+msgid "Play"
+msgstr "Abspielen"
+
+#: video-embed-privacy.php:55
+#@ video-embed-privacy
+msgid "Please activate JavaScript to view this video."
+msgstr "Aktivieren Sie JavaScript um das Video zu sehen."
+
+#: video-embed-privacy.php:55
+#@ video-embed-privacy
+msgid "Video-Link"
+msgstr "Video-Link"
+
+#: video-embed-privacy.php:106
+#@ video-embed-privacy
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: options.php:19
+#@ video-embed-privacy
+msgid "Cache images"
+msgstr "Bilder lokal zwischenspeichern"
+
+#: video-embed-privacy.php:31
+#@ video-embed-privacy
+msgid "https://www.google.com/intl/en/policies/privacy/"
+msgstr "https://www.google.com/intl/de/policies/privacy/"
+
+#: video-embed-privacy.php:32
+#@ video-embed-privacy
+msgid "privacy policies of google"
+msgstr "Datenschutzerklärungen von Google"
+
+#: video-embed-privacy.php:35
+#, php-format
+#@ video-embed-privacy
+msgid "This video will be embedded from Youtube. The %s apply."
+msgstr "Das Video wird von Youtube eingebettet. Es gelten die %s."
+

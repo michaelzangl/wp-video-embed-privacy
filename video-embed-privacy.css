@@ -1,0 +1,40 @@
+.video-wrapped {
+	background: black no-repeat center center;
+	background-size: cover;
+	color: white;
+	overflow: hidden;
+	position: relative;
+}
+.video-wrapped .video-wrapped-nojs {
+	padding: 20px;
+}
+
+.video-wrapped .video-wrapped-play {
+	text-align: center;
+	font-size: 30px;
+	padding-top: 20px;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 50%;
+	cursor: pointer;
+	text-shadow: 1px 1px 3px black;
+}
+
+.video-wrapped .video-wrapped-play:before {
+	content: '';
+	border-style: solid;
+	border-width: 20px 0 20px 30px;
+	border-color: transparent transparent transparent white;
+	position: absolute;
+	width: 0;
+	height: 0;
+	margin-left: -20px;
+	left: 50%;
+	top: -30px;
+	cursor: pointer;
+}
+
+.video-wrapped .video-wrapped-play .small {
+	font-size: 50%;
+}
