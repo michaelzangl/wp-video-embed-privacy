@@ -3,7 +3,7 @@ Contributors: michael.zangl
 Tags: youtube, germany, deutschland
 Requires at least: 4.5
 Tested up to: 4.9.4
-Stable tag: 1.2
+Stable tag: 2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,6 +24,8 @@ Dieses Plugin baut erst eine Verbindung zu Youtube auf, wenn der Nutzer aktiv au
 Es ist kein Setup erforderlich und es gibt dementsprechend auch keine Einstellungen.
 
 == Installation ==
+
+You need to enable url_allow_fopen.
 
 As any other wordpress plugin.
 
@@ -53,4 +55,8 @@ None so far.
 = 1.2 =
 * Add link to google privacy page
 
+= 2.0 =
+* Add settings
+* Internationalize
+* Prevent external requests to preview generator.
 
