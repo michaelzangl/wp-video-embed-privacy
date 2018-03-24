@@ -125,7 +125,7 @@ if (is_admin()) {
 
 
 if (is_dir(dirname(__FILE__) . '/plugin-update-checker')) {
-	// Download updates from github for github snapshots
+	// Download updates from github for github snapshots - this code will only execute if the gradle script is used for building.
 	require dirname(__FILE__) . '/plugin-update-checker/plugin-update-checker.php';
 	$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
 			'https://github.com/michaelzangl/wp-video-embed-privacy/',

@@ -13,7 +13,9 @@ Allows you to embed youtube videos without sending data to google on every page 
 
 This is meant to be used in the european union, but can be used in any other country where you want some more privacy for your users.
 
-No settings required, youtube links get replaced. Adjust the displayed message according to your local needs.
+No settings required, youtube links get replaced. Adjust the displayed message according to your local needs. 
+
+See https://github.com/michaelzangl/wp-video-embed-privacy/wiki for more technical information.
 
 = German Background =
 
@@ -35,17 +37,19 @@ It simply works out of the box, no configuration required.
 
 == Frequently Asked Questions ==
 
+If you find a problem, please open an issue on github: https://github.com/michaelzangl/wp-video-embed-privacy/issues
+
 = How to add a youtube video =
 
-Simply post the youtube link as usual
+Simply post the youtube link as usual. Or use the [embed]-Shortcode. Do not use the HTML-Embed-link (<embed...>
 
 = Can I enable caching =
 
-Yes, rename the file in the video-embed-privacy/preview directory.
+Yes, click the ckeckbox in settings
 
 == Screenshots ==
 
-None so far.
+1. Example video before the Youtube-Player is loaded
 
 == Changelog ==
 
