@@ -61,22 +61,22 @@ function video_embed_privacy_translate($text, $url, $atts) {
 	}
 	$v = $matches [1];
 	
-	$w = $atts ['width'];
-	if (preg_match("/width=\"(\\d+)/", $text, $matches)) {
-		$w = $matches [1] * 1;
-	}
-	
-	$h = $atts ['height'];
-	if (preg_match("/height=\"(\\d+)/", $text, $matches)) {
-		$h = $matches [1] * 1;
-	}
+//	$w = $atts ['width'];
+//	if (preg_match("/width=\"(\\d+)/", $text, $matches)) {
+//		$w = $matches [1] * 1;
+//	}
+//
+//	$h = $atts ['height'];
+//	if (preg_match("/height=\"(\\d+)/", $text, $matches)) {
+//		$h = $matches [1] * 1;
+//	}
 	
 	$text = preg_replace('~https?\://www\.youtube\.com~', 'https://www.youtube-nocookie.com', $text);
 	
 	// plugin_dir_path( __FILE__ )
 	$s = hash('sha256', video_embed_privacy_option('key') . $v);
 	$preview = plugins_url("preview/$v.jpg?s=$s", __FILE__);
-	return '<div class="video-wrapped" style="width: ' . $w . 'px; height: ' . $h . 'px; background-image: url(\'' . $preview . '\')" data-embed-frame="' . htmlspecialchars($text) . '" data-embed-play="' . htmlspecialchars($PLAY_TEXT) . '"><div class="video-wrapped-nojs">' . $NO_JS_TEXT . '</div></div>';
+	return '<div class="video-wrapped" style="background-image: url(\'' . $preview . '\')" data-embed-frame="' . htmlspecialchars($text) . '" data-embed-play="' . htmlspecialchars($PLAY_TEXT) . '"><div class="video-wrapped-nojs">' . $NO_JS_TEXT . '</div></div>';
 }
 
 function video_embed_privacy_styles() {
