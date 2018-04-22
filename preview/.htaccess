@@ -4,6 +4,6 @@ RewriteBase /
 # Skipped for existing images
 RewriteCond "%{REQUEST_FILENAME}" "!-f"
 RewriteCond $0#%{REQUEST_URI} ([^#]*)#(.*)\1$
-RewriteRule "^([^/.]+).jpg$" "%2preview.php?v=$1" [L,QSA]
+RewriteRule "^([^/.]+)/([^/.]+).jpg$" "%2preview.php?t=$1&v=$2" [L,QSA]
 
-RewriteRule "!^[^/.]+.jpg|preview.php.*$" "-" [R=404,L,NC]
+RewriteRule "!^[^/.]+/[^/.]+.jpg|preview.php.*$" "-" [R=404,L,NC]

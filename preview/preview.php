@@ -5,6 +5,7 @@ if (!isset($_REQUEST['s']) || !isset($_REQUEST['s'])) {
 	die("v");
 }
 
+$t = $_REQUEST["t"];
 $v = $_REQUEST["v"];
 $s = $_REQUEST["s"];
 preg_match("/^[\w-]+$/", $v) or die("invalid: $v");
@@ -16,18 +17,30 @@ try {
 	die('Settings missing');
 }
 
-if ($s !== hash('sha256', $settings['key'] . $v)) {
+if ($s !== hash('sha256', $settings['key'] . $t . '/' . $v)) {
 	die('Wrong key');
 }
 
-@header('Content-type: image/jpeg');
+require_once('guzzle/autoloader.php');
 
-$url = "http://img.youtube.com/vi/$v/hqdefault.jpg";
+use \GuzzleHttp\Client;
 
-$c = file_get_contents($url);
-
-// Set this to allow local caching of images.
-if ($settings['cache']) {
-	@file_put_contents(dirname(__FILE__) . "/$v.jpg", $c);
+// determine url to fetch image from
+if ($t === 'yt') {
+	$url = "http://img.youtube.com/vi/$v/hqdefault.jpg";
+} else if ($t == 'vimeo') {
+	$vimeoApiResponse = (new Client())->request('GET', "https://vimeo.com/api/oembed.json?url=https://vimeo.com/video/$v");
+	$url = json_decode($vimeoApiResponse->getBody())->thumbnail_url;
+} else {
+	die('Illegal type: ' . $t);
 }
-echo $c;
+
+// real request
+$res = (new Client())->request('GET', $url);
+if ($settings['cache']) {
+	@mkdir(dirname(__FILE__) . "/$t");
+	@file_put_contents(dirname(__FILE__) . "/$t/$v.jpg", $res->getBody());
+}
+
+@header('Content-type: ' . $res->getHeaderLine('content-type'));
+echo $res->getBody();

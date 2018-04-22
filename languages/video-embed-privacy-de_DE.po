@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Embed videos and respect privacy v2.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2018-03-24 13:33:52+0000\n"
+"PO-Revision-Date: 2018-04-22 16:10:45+0000\n"
 "Last-Translator: Michael Zangl <wordpress@michaelzangl.de>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,28 +20,28 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Textdomain-Support: yes"
 
-#: options.php:14
+#: options.php:15
 #@ video-embed-privacy
 msgid "General"
 msgstr "Allgemein"
 
-#: options.php:16
+#: options.php:21
 #@ video-embed-privacy
 msgid "Play button text"
 msgstr "Text für den Abspielen-Knopf"
 
-#: options.php:18
+#: options.php:22
 #@ video-embed-privacy
 msgid "HMTL below youtube play link"
 msgstr "HTML unter dem Youtube Abspielen-Knopf"
 
-#: options.php:54
+#: options.php:70
 #@ video-embed-privacy
 msgid "You can enter your custom texts here. Leave empty to use defaults."
 msgstr "Leer lassen um Standardtexte zu verwenden."
 
-#: options.php:60
-#: options.php:75
+#: options.php:76
+#: options.php:91
 #@ video-embed-privacy
 msgid "Video Embed Privacy settings"
 msgstr "Video-Privatsphären Einstellungen"
@@ -76,27 +76,22 @@ msgstr "Michael Zangl"
 msgid "2.0"
 msgstr "2.0"
 
-#: video-embed-privacy.php:34
-#@ video-embed-privacy
-msgid "Play"
-msgstr "Abspielen"
-
-#: video-embed-privacy.php:55
+#: video-embed-privacy.php:78
 #@ video-embed-privacy
 msgid "Please activate JavaScript to view this video."
 msgstr "Aktivieren Sie JavaScript um das Video zu sehen."
 
-#: video-embed-privacy.php:55
+#: video-embed-privacy.php:78
 #@ video-embed-privacy
 msgid "Video-Link"
 msgstr "Video-Link"
 
-#: video-embed-privacy.php:106
+#: video-embed-privacy.php:151
 #@ video-embed-privacy
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: options.php:19
+#: options.php:17
 #@ video-embed-privacy
 msgid "Cache images"
 msgstr "Bilder lokal zwischenspeichern"
@@ -111,9 +106,118 @@ msgstr "https://www.google.com/intl/de/policies/privacy/"
 msgid "privacy policies of google"
 msgstr "Datenschutzerklärungen von Google"
 
-#: video-embed-privacy.php:35
+#: video-embed-privacy.php:40
 #, php-format
 #@ video-embed-privacy
 msgid "This video will be embedded from Youtube. The %s apply."
 msgstr "Das Video wird von Youtube eingebettet. Es gelten die %s."
+
+#: build/plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:395
+#: plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:395
+#@ plugin-update-checker
+msgid "Check for updates"
+msgstr ""
+
+#: build/plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:432
+#: plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:432
+#@ default
+msgid "View details"
+msgstr ""
+
+#: build/plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:455
+#: plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:455
+#, php-format
+#@ default
+msgid "More information about %s"
+msgstr ""
+
+#: build/plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:548
+#: plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:548
+#, php-format
+#@ plugin-update-checker
+msgctxt "the plugin title"
+msgid "The %s plugin is up to date."
+msgstr ""
+
+#: build/plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:550
+#: plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:550
+#, php-format
+#@ plugin-update-checker
+msgctxt "the plugin title"
+msgid "A new version of the %s plugin is available."
+msgstr ""
+
+#: build/plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:552
+#: plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:552
+#, php-format
+#@ plugin-update-checker
+msgctxt "the plugin title"
+msgid "Could not determine if updates are available for %s."
+msgstr ""
+
+#: build/plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:558
+#: plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:558
+#, php-format
+#@ plugin-update-checker
+msgid "Unknown update checker status \"%s\""
+msgstr ""
+
+#: build/plugin-update-checker/Puc/v4p4/Vcs/PluginUpdateChecker.php:98
+#: plugin-update-checker/Puc/v4p4/Vcs/PluginUpdateChecker.php:98
+#@ plugin-update-checker
+msgid "There is no changelog available."
+msgstr ""
+
+#: options.php:16
+#@ video-embed-privacy
+msgid "Replace all [embed]s"
+msgstr "Alle [embed]s ersetzen"
+
+#: video-embed-privacy.php:63
+#@ video-embed-privacy
+msgid "Youtube"
+msgstr "Youtube"
+
+#: options.php:60
+#@ video-embed-privacy
+msgid "Replace all unknown embed codes by a generic mask."
+msgstr "Alle unbekannten Einbettungscodes werden durch einen generischen Hinweis ersetzt."
+
+#: video-embed-privacy.php:33
+#@ video-embed-privacy
+msgid "https://vimeo.com/privacy"
+msgstr "https://vimeo.com/privacy"
+
+#: video-embed-privacy.php:34
+#@ video-embed-privacy
+msgid "privacy policies of vimeo"
+msgstr "Vimeo-Datenschutzerklärung"
+
+#: video-embed-privacy.php:36
+#@ video-embed-privacy
+msgid "Show Content"
+msgstr "Inhalte anzeigen"
+
+#: video-embed-privacy.php:37
+#: video-embed-privacy.php:38
+#@ video-embed-privacy
+msgid "Play Video"
+msgstr "Video abspielen"
+
+#: video-embed-privacy.php:39
+#, php-format
+#@ video-embed-privacy
+msgid "This content is referring to %s and will be loaded from an external source."
+msgstr "Dieser Inhalt referenziert auf %s. Er wird aus einer externen Quelle eingebunden. Hierbei könnten deine Daten (unter anderem IP-Adresse, Cookies) weiter geleitet werden."
+
+#: video-embed-privacy.php:41
+#, php-format
+#@ video-embed-privacy
+msgid "This video will be embedded from Vimeo. The %s apply."
+msgstr "Das Video wird von Vimeo eingebettet. Beachte die %s"
+
+#: video-embed-privacy.php:70
+#@ video-embed-privacy
+msgid "Vimeo"
+msgstr "Vimeo"
 

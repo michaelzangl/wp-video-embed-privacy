@@ -7,33 +7,29 @@ function video_embed_privacy_load_settings_page() {
 }
 
 function video_embed_privacy_settings_init() {
-	register_setting('vepPage', 'video-embed-privacy-play');
+	register_setting('vepPage', 'video-embed-privacy-yt_show');
 	register_setting('vepPage', 'video-embed-privacy-yt_hint');
 	register_setting('vepPage', 'video-embed-privacy-cache');
+	register_setting('vepPage', 'video-embed-privacy-replace_unknown');
 	
 	add_settings_section('video_embed_privacy_vepPage_section', __('General', 'video-embed-privacy'), 'video_embed_privacy_settings_section_callback', 'vepPage');
-	
-	add_settings_field('video_embed_privacy_text_field_0', __('Play button text', 'video-embed-privacy'), 'video_embed_privacy_text_play_render', 'vepPage', 'video_embed_privacy_vepPage_section');
-	
-	add_settings_field('video_embed_privacy_text_field_1', __('HMTL below youtube play link', 'video-embed-privacy'), 'video_embed_privacy_text_yt_hint_render', 'vepPage', 'video_embed_privacy_vepPage_section');
+	add_settings_field('video_embed_privacy_replace_unknown', __('Replace all [embed]s', 'video-embed-privacy'), 'video_embed_privacy_relace_unknown_render', 'vepPage', 'video_embed_privacy_vepPage_section');
 	add_settings_field('video_embed_privacy_cache', __('Cache images', 'video-embed-privacy'), 'video_embed_privacy_cache_render', 'vepPage', 'video_embed_privacy_vepPage_section');
-	}
 
-function video_embed_privacy_text_play_render() {
-	?>
-<input type='text'
-	name='video-embed-privacy-play'
-	placeholder="<?php echo esc_html(video_embed_privacy_defaults()['play'])?>"
-	value="<?php echo htmlspecialchars(get_option('video-embed-privacy-play', '')); ?>">
-<?php
+	foreach (video_embed_privacy_available() as $id => $options) {
+	add_settings_section('video_embed_privacy_vepPage_section_' . $id, $options['name'], 'video_embed_privacy_settings_section_xx_callback', 'vepPage');
+	add_settings_field('video_embed_privacy_text_field_0', __('Play button text', 'video-embed-privacy'), 'video_embed_privacy_text_xx_render', 'vepPage', 'video_embed_privacy_vepPage_section_' . $id, $id . '_show');
+	add_settings_field('video_embed_privacy_text_field_1', __('HMTL below youtube play link', 'video-embed-privacy'), 'video_embed_privacy_text_xx_render', 'vepPage', 'video_embed_privacy_vepPage_section_' . $id, $id . '_hint');
+	}
 }
 
-function video_embed_privacy_text_yt_hint_render() {
+function video_embed_privacy_text_xx_render($id) {
 	?>
-<input type="text"
-	name="video-embed-privacy-yt_hint"
-	placeholder="<?php echo esc_html(video_embed_privacy_defaults()['yt_hint'])?>"
-	value="<?php echo htmlspecialchars(get_option('video-embed-privacy-yt_hint', '')); ?>">
+<input type='text'
+	name='video-embed-privacy-<?php echo $id ?>'
+	placeholder="<?php echo esc_html(video_embed_privacy_defaults()[$id])?>"
+	value="<?php echo htmlspecialchars(get_option('video-embed-privacy-' . $id, '')); ?>"
+	style="width: 100%">
 <?php
 }
 
@@ -50,7 +46,27 @@ function video_embed_privacy_cache_render() {
 <?php
 }
 
+function video_embed_privacy_relace_unknown_render() {
+	?>
+<label><input type="checkbox"
+	name="video-embed-privacy-replace_unknown"
+	value="true"
+	<?php 
+	if (video_embed_privacy_option('replace_unknown') === 'true') {
+		echo ' checked';
+	}
+	?>>
+<?php
+	echo __( 'Replace all unknown embed codes by a generic mask.', 'video-embed-privacy' );
+?>
+	</label>
+<?php
+}
+
 function video_embed_privacy_settings_section_callback(  ) {
+}
+
+function video_embed_privacy_settings_section_xx_callback(  ) {
 	echo __( 'You can enter your custom texts here. Leave empty to use defaults.', 'video-embed-privacy' );
 }
 

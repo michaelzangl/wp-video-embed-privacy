@@ -28,12 +28,19 @@
 defined('ABSPATH') or die('No script kiddies please!');
 
 function video_embed_privacy_defaults() {
-	$link = '<a href="' . __('https://www.google.com/intl/en/policies/privacy/', 'video-embed-privacy') . '" target="_blank">'
+	$ytLink = '<a href="' . __('https://www.google.com/intl/en/policies/privacy/', 'video-embed-privacy') . '" target="_blank">'
 			. __('privacy policies of google', 'video-embed-privacy') . '</a>';
+	$vimeoLink = '<a href="' . __('https://vimeo.com/privacy', 'video-embed-privacy') . '" target="_blank">'
+			. __('privacy policies of vimeo', 'video-embed-privacy') . '</a>';
 	return [
-			'play' => __('Play', 'video-embed-privacy'),
-			'yt_hint' => sprintf(__('This video will be embedded from Youtube. The %s apply.', 'video-embed-privacy'), $link),
+			'show' => __('Show Content', 'video-embed-privacy'),
+			'yt_show' => __('Play Video', 'video-embed-privacy'),
+			'vimeo_show' => __('Play Video', 'video-embed-privacy'),
+			'generic_hint' => __('This content is referring to %s and will be loaded from an external source.', 'video-embed-privacy'),
+			'yt_hint' => sprintf(__('This video will be embedded from Youtube. The %s apply.', 'video-embed-privacy'), $ytLink),
+			'vimeo_hint' => sprintf(__('This video will be embedded from Vimeo. The %s apply.', 'video-embed-privacy'), $vimeoLink),
 			'cache' => 'false',
+			'replace_unknown' => 'true',
 			'key' => ''
 	];
 }
@@ -50,33 +57,70 @@ function video_embed_privacy_option_ne($name) {
 	return video_embed_privacy_option($name) ?: video_embed_privacy_defaults()[$name];
 }
 
+function video_embed_privacy_available() {
+	return [
+		'yt' => [
+			'name' => __('Youtube', 'video-embed-privacy'),
+			'videoIdMatch' => "=youtube.*embed/([\\w-]+)=i",
+			'textFixer' => function($in) {
+				return preg_replace('~https?\://www\.youtube\.com~', 'https://www.youtube-nocookie.com', $in);
+			}
+		],
+		'vimeo' => [
+			'name' => __('Vimeo', 'video-embed-privacy'),
+			'videoIdMatch' => '=://player.vimeo.com/video/(\\d+)=i',
+		]
+	];
+}
+
 function video_embed_privacy_translate($text, $url, $atts) {
 	wp_enqueue_script('video-embed-privacy');
-	$NO_JS_TEXT = esc_html__('Please activate JavaScript to view this video.', 'video-embed-privacy') . '<br/>' . esc_html__('Video-Link', 'video-embed-privacy') . ': <a href="' . htmlspecialchars($url) . '">' . $url . '</a>';
+	$noJsText = esc_html__('Please activate JavaScript to view this video.', 'video-embed-privacy') . '<br/>' . esc_html__('Video-Link', 'video-embed-privacy') . ': <a href="' . htmlspecialchars($url) . '">' . $url . '</a>';
 	
-	$PLAY_TEXT = video_embed_privacy_option_ne('play') . '<div class="small">' . video_embed_privacy_option_ne('yt_hint') . '</div>';
-	
-	if (!preg_match("=youtube.*embed/([\\w-]+)=i", $text, $matches)) {
-		return $text;
-	}
-	$v = $matches [1];
-	
+	$playText = '<span>' . video_embed_privacy_option_ne('show') . '</span><div class="small"><span>' . sprintf(video_embed_privacy_option_ne('generic_hint'), preg_replace("~\\w+://(.*?)/.*~", "$1", $url)) . '</span></div>';
+	$embedText = $text;
+
 	$w = $atts ['width'];
-	if (preg_match("/width=\"(\\d+)/", $text, $matches)) {
-		$w = $matches [1] * 1;
+	if (preg_match("/width=\"(\\d+)/", $text, $widthMatches)) {
+		$w = $widthMatches [1] * 1;
 	}
 	
 	$h = $atts ['height'];
-	if (preg_match("/height=\"(\\d+)/", $text, $matches)) {
-		$h = $matches [1] * 1;
+	if (preg_match("/height=\"(\\d+)/", $text, $heightMatches)) {
+		$h = $heightMatches [1] * 1;
 	}
 	
-	$text = preg_replace('~https?\://www\.youtube\.com~', 'https://www.youtube-nocookie.com', $text);
+	$style = 'width: ' . $w . 'px; min-height: ' . $h . 'px;';
+	$class = 'video-wrapped';
+	$doReplacement = video_embed_privacy_option('replace_unknown') === 'true';
+
+	$supported = video_embed_privacy_available();
+
+	foreach ($supported as $id => $settings) {
+		if (preg_match($settings['videoIdMatch'], $text, $matches)) {
+			$playText = '<span>' . video_embed_privacy_option_ne($id . '_show') . '</span><div class="small"><span>' . video_embed_privacy_option_ne($id . '_hint') . '</span></div>';
+			$v = $matches [1];
+		
+			if (isset($settings['textFixer'])) {
+				$embedText = $settings['textFixer']($embedText);
+			}
+
+			$embedText .=  video_embed_privacy_option('key') . $id . '/' . $v;
+		
+			$s = hash('sha256', video_embed_privacy_option('key') . $id . '/' . $v);
+			$preview = plugins_url("preview/$id/$v.jpg?s=$s", __FILE__);
+			$class .= ' video-wrapped-video video-wrapped-' . $id;
+			$style .= ' background-image: url(\'' . $preview . '\')';
+			$doReplacement = true;
+			break;
+		}
+	}
 	
-	// plugin_dir_path( __FILE__ )
-	$s = hash('sha256', video_embed_privacy_option('key') . $v);
-	$preview = plugins_url("preview/$v.jpg?s=$s", __FILE__);
-	return '<div class="video-wrapped" style="width: ' . $w . 'px; height: ' . $h . 'px; background-image: url(\'' . $preview . '\')" data-embed-frame="' . htmlspecialchars($text) . '" data-embed-play="' . htmlspecialchars($PLAY_TEXT) . '"><div class="video-wrapped-nojs">' . $NO_JS_TEXT . '</div></div>';
+	if ($doReplacement) {
+		return '<div class="' . $class . '" style="' . $style . '" data-embed-frame="' . htmlspecialchars($embedText) . '" data-embed-play="' . htmlspecialchars($playText) . '"><div class="video-wrapped-nojs"><span>' . $noJsText . '</span></div></div>';
+	} else {
+		return $text;
+	}
 }
 
 function video_embed_privacy_styles() {
@@ -86,6 +130,7 @@ function video_embed_privacy_styles() {
 }
 
 function video_embed_privacy_settings() {
+	add_editor_style(plugins_url('video-embed-privacy.css', __FILE__));
 	register_setting('video-embed-privacy', 'notice');
 }
 
