@@ -10,6 +10,7 @@
 }
 .video-wrapped-clicked {
 	background: transparent;
+	background-image: none !important;
 }
 
 .video-wrapped .video-wrapped-nojs {

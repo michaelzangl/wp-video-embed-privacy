@@ -105,8 +105,6 @@ function video_embed_privacy_translate($text, $url, $atts) {
 				$embedText = $settings['textFixer']($embedText);
 			}
 
-			$embedText .=  video_embed_privacy_option('key') . $id . '/' . $v;
-		
 			$s = hash('sha256', video_embed_privacy_option('key') . $id . '/' . $v);
 			$preview = plugins_url("preview/$id/$v.jpg?s=$s", __FILE__);
 			$class .= ' video-wrapped-video video-wrapped-' . $id;
