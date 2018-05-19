@@ -46,7 +46,7 @@ function video_embed_privacy_defaults() {
 }
 function video_embed_privacy_option($name) {
 	$defaults = video_embed_privacy_defaults();
-	
+
 	if (!isset($defaults[$name])) {
 		die("Unknown option: $name");
 	}
@@ -74,9 +74,9 @@ function video_embed_privacy_available() {
 }
 
 function video_embed_privacy_translate($text, $url, $atts) {
-	wp_enqueue_script('video-embed-privacy');
+	wp_enqueue_script('video-embed-privacy', plugins_url('video-embed-privacy.js', __FILE__), array(), '1.0', true);
 	$noJsText = esc_html__('Please activate JavaScript to view this video.', 'video-embed-privacy') . '<br/>' . esc_html__('Video-Link', 'video-embed-privacy') . ': <a href="' . htmlspecialchars($url) . '">' . $url . '</a>';
-	
+
 	$playText = '<span>' . video_embed_privacy_option_ne('show') . '</span><div class="small"><span>' . sprintf(video_embed_privacy_option_ne('generic_hint'), preg_replace("~\\w+://(.*?)/.*~", "$1", $url)) . '</span></div>';
 	$embedText = $text;
 
@@ -84,12 +84,12 @@ function video_embed_privacy_translate($text, $url, $atts) {
 	if (preg_match("/width=\"(\\d+)/", $text, $widthMatches)) {
 		$w = $widthMatches [1] * 1;
 	}
-	
+
 	$h = $atts ['height'];
 	if (preg_match("/height=\"(\\d+)/", $text, $heightMatches)) {
 		$h = $heightMatches [1] * 1;
 	}
-	
+
 	$style = 'width: ' . $w . 'px; min-height: ' . $h . 'px;';
 	$class = 'video-wrapped';
 	$doReplacement = video_embed_privacy_option('replace_unknown') === 'true';
@@ -100,7 +100,7 @@ function video_embed_privacy_translate($text, $url, $atts) {
 		if (preg_match($settings['videoIdMatch'], $text, $matches)) {
 			$playText = '<span>' . video_embed_privacy_option_ne($id . '_show') . '</span><div class="small"><span>' . video_embed_privacy_option_ne($id . '_hint') . '</span></div>';
 			$v = $matches [1];
-		
+
 			if (isset($settings['textFixer'])) {
 				$embedText = $settings['textFixer']($embedText);
 			}
@@ -113,7 +113,7 @@ function video_embed_privacy_translate($text, $url, $atts) {
 			break;
 		}
 	}
-	
+
 	if ($doReplacement) {
 		return '<div class="' . $class . '" style="' . $style . '" data-embed-frame="' . htmlspecialchars($embedText) . '" data-embed-play="' . htmlspecialchars($playText) . '"><div class="video-wrapped-nojs"><span>' . $noJsText . '</span></div></div>';
 	} else {
@@ -134,14 +134,14 @@ function video_embed_privacy_settings() {
 
 function video_embed_privacy_write_settings() {
 	update_option('video-embed-privacy-key', wp_generate_password(48));
-	
+
 	$settings = [
 			'cache' => video_embed_privacy_option('cache') === 'true',
 			'key' => video_embed_privacy_option('key')
 	];
 	$file = dirname(__FILE__) . '/preview/settings.php';
 	file_put_contents($file, "<?php if(!defined('__ACCESS_VEP_SETTINGS__')) die('Illegal access.'); return " . var_export($settings, true) . ';');
-	
+
 }
 
 function video_embed_privacy_add_action_links ( $links ) {
