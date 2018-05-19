@@ -1,0 +1,15 @@
+{
+	"name"       : "michaelzangl/wp-video-embed-privacy",
+	"description": "Wordpress plugin for making ebedding videos GDPR compliant",
+	"homepage"   : "https://wordpress.org/plugins/video-embed-privacy/",
+	"type"       : "wordpress-plugin",
+	"license"    : "GPL-2.0+",
+	"authors"    : [
+		{
+			"name"    : "Michael Zangl"
+		}
+	],
+	"require": {
+          "composer/installers": "~1.0"
+  }
+}
