@@ -74,7 +74,6 @@ function video_embed_privacy_available() {
 }
 
 function video_embed_privacy_translate($text, $url, $atts) {
-	wp_enqueue_script('video-embed-privacy', plugins_url('video-embed-privacy.js', __FILE__), array(), '1.0', true);
 	$noJsText = esc_html__('Please activate JavaScript to view this video.', 'video-embed-privacy') . '<br/>' . esc_html__('Video-Link', 'video-embed-privacy') . ': <a href="' . htmlspecialchars($url) . '">' . $url . '</a>';
 	
 	$playText = '<span>' . video_embed_privacy_option_ne('show') . '</span><div class="small"><span>' . sprintf(video_embed_privacy_option_ne('generic_hint'), preg_replace("~\\w+://(.*?)/.*~", "$1", $url)) . '</span></div>';
@@ -125,6 +124,7 @@ function video_embed_privacy_styles() {
 	wp_register_style('video-embed-privacy', plugins_url('video-embed-privacy.css', __FILE__));
 	wp_register_script('video-embed-privacy', plugins_url('video-embed-privacy.js', __FILE__), array(), '1.0', true);
 	wp_enqueue_style('video-embed-privacy');
+	wp_enqueue_script('video-embed-privacy');
 }
 
 function video_embed_privacy_settings() {
