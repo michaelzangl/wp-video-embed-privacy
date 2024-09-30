@@ -1,14 +1,14 @@
 <?php
 // License: GPLv2
 
-if (!isset($_REQUEST['s']) || !isset($_REQUEST['s'])) {
+if (!isset($_REQUEST['s']) || !isset($_REQUEST['v'])) {
 	die("v");
 }
 
 $t = $_REQUEST["t"];
 $v = $_REQUEST["v"];
 $s = $_REQUEST["s"];
-preg_match("/^[\w-]+$/", $v) or die("invalid: $v");
+preg_match("/^[\w-]+$/", $v) or die("invalid v");
 
 try {
 	define('__ACCESS_VEP_SETTINGS__', 1);

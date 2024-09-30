@@ -64,3 +64,12 @@ Yes, click the ckeckbox in settings
 * Internationalize
 * Prevent external requests to preview generator.
 
+= 2.1 =
+* Add vimeo, fix some styling issues.
+
+= 2.2 =
+* Fix a small bug with the previews.
+
+= 2.3 =
+* Security update - thanks to vgo0
+
