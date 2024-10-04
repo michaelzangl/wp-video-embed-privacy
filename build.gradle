@@ -10,7 +10,8 @@ task getUpdateChecker(type: Exec) {
 }
 
 task dist(type: Zip, dependsOn: 'getUpdateChecker') {
-	archiveName = 'video-embed-privacy.zip'
+	archiveFileName = 'video-embed-privacy.zip'
+	destinationDirectory = layout.buildDirectory
 
 	from(file('.')) {
 		include 'readme.txt'
