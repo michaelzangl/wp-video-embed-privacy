@@ -88,7 +88,7 @@ function video_embed_privacy_show_options() {
 }
 
 function video_embed_privacy_admin_menu() {
-	add_submenu_page('_doesnt_exist', __('Video Embed Privacy settings', 'video-embed-privacy'), '', 'manage_options', 'video-embed-privacy', 'video_embed_privacy_show_options');
+	add_options_page(__('Video Embed Privacy settings', 'video-embed-privacy'), __('Embed videos and respect privacy', 'video-embed-privacy'), 'manage_options', 'video-embed-privacy', 'video_embed_privacy_show_options');
 }
 
 add_action('admin_init', 'video_embed_privacy_settings_init');
