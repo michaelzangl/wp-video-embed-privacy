@@ -32,8 +32,8 @@ msgstr "Text für den Abspielen-Knopf"
 
 #: options.php:22
 #@ video-embed-privacy
-msgid "HMTL below youtube play link"
-msgstr "HTML unter dem Youtube Abspielen-Knopf"
+msgid "HTML below play button text"
+msgstr "HTML unter dem Abspielen-Knopf"
 
 #: options.php:70
 #@ video-embed-privacy
@@ -83,7 +83,7 @@ msgstr "Aktivieren Sie JavaScript um das Video zu sehen."
 
 #: video-embed-privacy.php:78
 #@ video-embed-privacy
-msgid "Video-Link"
+msgid "Video link"
 msgstr "Video-Link"
 
 #: video-embed-privacy.php:151
@@ -214,7 +214,7 @@ msgstr "Dieser Inhalt referenziert auf %s. Er wird aus einer externen Quelle ein
 #, php-format
 #@ video-embed-privacy
 msgid "This video will be embedded from Vimeo. The %s apply."
-msgstr "Das Video wird von Vimeo eingebettet. Beachte die %s"
+msgstr "Das Video wird von Vimeo eingebettet. Beachte die %s."
 
 #: video-embed-privacy.php:70
 #@ video-embed-privacy
