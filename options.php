@@ -19,7 +19,7 @@ function video_embed_privacy_settings_init() {
 	foreach (video_embed_privacy_available() as $id => $options) {
 	add_settings_section('video_embed_privacy_vepPage_section_' . $id, $options['name'], 'video_embed_privacy_settings_section_xx_callback', 'vepPage');
 	add_settings_field('video_embed_privacy_text_field_0', __('Play button text', 'video-embed-privacy'), 'video_embed_privacy_text_xx_render', 'vepPage', 'video_embed_privacy_vepPage_section_' . $id, $id . '_show');
-	add_settings_field('video_embed_privacy_text_field_1', __('HMTL below youtube play link', 'video-embed-privacy'), 'video_embed_privacy_text_xx_render', 'vepPage', 'video_embed_privacy_vepPage_section_' . $id, $id . '_hint');
+	add_settings_field('video_embed_privacy_text_field_1', __('HTML below play button text', 'video-embed-privacy'), 'video_embed_privacy_text_xx_render', 'vepPage', 'video_embed_privacy_vepPage_section_' . $id, $id . '_hint');
 	}
 }
 

@@ -74,7 +74,7 @@ function video_embed_privacy_available() {
 }
 
 function video_embed_privacy_translate($text, $url, $atts) {
-	$noJsText = esc_html__('Please activate JavaScript to view this video.', 'video-embed-privacy') . '<br/>' . esc_html__('Video-Link', 'video-embed-privacy') . ': <a href="' . htmlspecialchars($url) . '">' . $url . '</a>';
+	$noJsText = esc_html__('Please activate JavaScript to view this video.', 'video-embed-privacy') . '<br/>' . esc_html__('Video link', 'video-embed-privacy') . ': <a href="' . htmlspecialchars($url) . '">' . $url . '</a>';
 	
 	$playText = '<span>' . video_embed_privacy_option_ne('show') . '</span><div class="small"><span>' . sprintf(video_embed_privacy_option_ne('generic_hint'), preg_replace("~\\w+://(.*?)/.*~", "$1", $url)) . '</span></div>';
 	$embedText = $text;
