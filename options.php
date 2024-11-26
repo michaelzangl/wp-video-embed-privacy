@@ -9,6 +9,8 @@ function video_embed_privacy_load_settings_page() {
 function video_embed_privacy_settings_init() {
 	register_setting('vepPage', 'video-embed-privacy-yt_show');
 	register_setting('vepPage', 'video-embed-privacy-yt_hint');
+	register_setting('vepPage', 'video-embed-privacy-vimeo_show');
+	register_setting('vepPage', 'video-embed-privacy-vimeo_hint');
 	register_setting('vepPage', 'video-embed-privacy-cache');
 	register_setting('vepPage', 'video-embed-privacy-replace_unknown');
 	
