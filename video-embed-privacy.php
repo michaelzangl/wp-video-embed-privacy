@@ -146,7 +146,7 @@ function video_embed_privacy_write_settings() {
 
 function video_embed_privacy_add_action_links ( $links ) {
 	$mylinks = array(
-			'<a href="' . admin_url( 'options.php?page=video-embed-privacy' ) . '">' . esc_html__('Settings', 'video-embed-privacy') . '</a>',
+			'<a href="' . admin_url( 'options-general.php?page=video-embed-privacy' ) . '">' . esc_html__('Settings', 'video-embed-privacy') . '</a>',
 	);
 	return array_merge( $links, $mylinks );
 }
